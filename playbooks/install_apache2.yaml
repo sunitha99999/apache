@@ -1,0 +1,21 @@
+- hosts: webservers
+  remote_user: ubuntu
+  become_user: root
+  become_method: sudo
+  become: yes
+
+  tasks:
+    - name: make sure to install apache2 on machine
+      apt:
+        name: apache2
+        state: latest
+        update-cache: yes
+    - name: make sure to run the apache
+      service:
+        enabled: yes
+        name: apache2
+        state: started
+    - name: copy the index.html to /var/www/html
+      copy:
+        src: /etc/ansible/files/index.html
+        dest: /var/www/html/index.html

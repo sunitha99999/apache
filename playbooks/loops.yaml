@@ -1,0 +1,39 @@
+- hosts: all
+  become_user: root
+  become_method: sudo
+  become: yes
+
+  tasks:
+   - name: make sure to install all on ubuntu machine
+     apt:
+       name: "{{ item }}"
+       state: latest
+       update-cache: yes
+     when: ansible_distribution=="ubuntu"
+     loop:
+       - ntp
+       - wget
+       - zip
+       - unzip
+       - curl
+       - git
+
+   - name: make sure to install all on redhat machine
+     yum:
+      name: "{{ item }}"
+      state: latest
+      update_cache: yes
+     when: ansible_distribution=="RedHat"
+     loop:
+       - chrony
+       - wget
+       - zip
+       - unzip
+       - curl
+       
+
+
+                                  
+
+
+
