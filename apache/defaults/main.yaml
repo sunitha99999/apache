@@ -1,0 +1,4 @@
+ index_file: index.html
+ dest_path: /var/www/html
+
+

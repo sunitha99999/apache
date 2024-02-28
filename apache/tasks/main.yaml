@@ -1,0 +1,5 @@
+ - name: Include OS-specific variables.
+   include_vars: "{{ ansible_distribution }}.yaml"
+ - name: Configure Apache.
+   include_tasks: "configure-{{ ansible_distribution }}.yaml"
+
